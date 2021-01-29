@@ -21,6 +21,10 @@ public class MainMenu : MonoBehaviour
     private InputField playerName;
     [SerializeField]
     private GameObject namePopup;
+    [SerializeField]
+    private GameObject menu;
+    [SerializeField]
+    private GameObject board;
     void Start()
     {
         playButton.onClick.AddListener(LoadGame);
@@ -38,7 +42,8 @@ public class MainMenu : MonoBehaviour
 
     private void LoadGame()
     {
-        SceneManager.LoadScene("Level1");
+        menu.SetActive(false);
+        board.SetActive(true);
     }
 
     private void UpdateLeaderBoard()
@@ -54,5 +59,6 @@ public class MainMenu : MonoBehaviour
     {
         ScoreManager.playerName = playerName.text;
         namePopup.SetActive(false);
+        menu.SetActive(true);
     }
 }

@@ -4,24 +4,13 @@ using UnityEngine.SceneManagement;
 public class OptionsMenu : MonoBehaviour
 {
     public GameObject mainmenu;
+    public GameObject board;
 
-    private void Start()
-    {
-    }
-
-    public void OnOptionsButton()
-    {
-        mainmenu.SetActive(true);
-    }
-    public void OnResumeButton()
-    {
-        mainmenu.SetActive(false);
-        
-        SaveSystem.SaveGame();
-    }
     public void OnMainMenuButton()
     {
-        SceneManager.LoadScene("Main");
+
+        mainmenu.SetActive(true);
+        board.SetActive(false);
     }
 
 

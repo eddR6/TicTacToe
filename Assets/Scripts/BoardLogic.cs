@@ -140,6 +140,7 @@ public class BoardLogic : MonoBehaviour
         {
             Toast.Instance.Show("CPU wins!", 4f, Toast.ToastColor.Red);
             ScoreManager.UpdateScore(0);
+            currentPlayer = CurrentPlayer.Player;
         }
         ResetBoard();
     }
@@ -152,6 +153,9 @@ public class BoardLogic : MonoBehaviour
     IEnumerator SceneReset()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("Level1");
+        for(int i = 0; i < blocks.Length; i++)
+        {
+            blocks[i].GetComponentInChildren<Text>().text = "";
+        }
     }
 }
