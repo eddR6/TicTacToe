@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class BoardLogic : MonoBehaviour
 {
@@ -10,11 +8,13 @@ public class BoardLogic : MonoBehaviour
     private GameObject[] blocks;
     private string[] str;
     private CurrentPlayer currentPlayer;
+   
 
     private void Start()
     {
         currentPlayer=CurrentPlayer.Player;
         str = new string[blocks.Length];
+        UIManager.SetCurrentUI("PlayerName");
     }
 
     public void UpdateBoard(int id)

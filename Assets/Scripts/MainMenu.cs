@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -19,12 +18,7 @@ public class MainMenu : MonoBehaviour
     private Text leaderBoard;
     [SerializeField]
     private InputField playerName;
-    [SerializeField]
-    private GameObject namePopup;
-    [SerializeField]
-    private GameObject menu;
-    [SerializeField]
-    private GameObject board;
+
     void Start()
     {
         playButton.onClick.AddListener(LoadGame);
@@ -42,13 +36,12 @@ public class MainMenu : MonoBehaviour
 
     private void LoadGame()
     {
-        menu.SetActive(false);
-        board.SetActive(true);
+        UIManager.ChangeUI("GameBoard");
     }
 
     private void UpdateLeaderBoard()
     {
-        leaderBoard.text = "-Leader Boaerd-\n";
+        leaderBoard.text = "-Leader Board-\n";
         for(int i = 0; i < SaveSystem.HighScores.Length; i++)
         {
             leaderBoard.text += SaveSystem.Scorers[i] + " : " + SaveSystem.HighScores[i] + "\n";
@@ -58,7 +51,6 @@ public class MainMenu : MonoBehaviour
     private void SubmitPlayerName()
     {
         ScoreManager.playerName = playerName.text;
-        namePopup.SetActive(false);
-        menu.SetActive(true);
+        UIManager.ChangeUI("MainMenu");
     }
 }

@@ -264,8 +264,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d08f474c6459c4b937b6b0b6f5ecb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainmenu: {fileID: 331965274}
-  board: {fileID: 2059189398}
 --- !u!1 &104375557
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +486,7 @@ GameObject:
   - component: {fileID: 331965277}
   - component: {fileID: 331965276}
   m_Layer: 5
-  m_Name: MainScreen
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3623,6 +3621,7 @@ GameObject:
   - component: {fileID: 1492742664}
   - component: {fileID: 1492742665}
   - component: {fileID: 1492742666}
+  - component: {fileID: 1492742667}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3730,9 +3729,6 @@ MonoBehaviour:
   submitButton: {fileID: 449039367}
   leaderBoard: {fileID: 1018566010}
   playerName: {fileID: 953366817}
-  namePopup: {fileID: 104375557}
-  menu: {fileID: 331965274}
-  board: {fileID: 2059189398}
 --- !u!114 &1492742665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3745,8 +3741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d08f474c6459c4b937b6b0b6f5ecb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainmenu: {fileID: 0}
-  board: {fileID: 0}
 --- !u!114 &1492742666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3769,6 +3763,22 @@ MonoBehaviour:
   - {fileID: 1175385100}
   - {fileID: 1400010647}
   - {fileID: 1468936425}
+  uIManager: {fileID: 1492742667}
+--- !u!114 &1492742667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492742659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a764bd520ab234da74cd79161d3d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 104375557}
+  mainMenu: {fileID: 331965274}
+  gameBoard: {fileID: 2059189398}
 --- !u!1 &1493165895
 GameObject:
   m_ObjectHideFlags: 0
@@ -4079,6 +4089,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52d7bd8fffc05ca42b4093976e4896ff, type: 3}
+--- !u!1 &1570812333 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1335552739536552, guid: 52d7bd8fffc05ca42b4093976e4896ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 1570812332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1570812334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570812333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8a764bd520ab234da74cd79161d3d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 0}
+  mainMenu: {fileID: 0}
+  gameBoard: {fileID: 0}
 --- !u!1 &1701940542
 GameObject:
   m_ObjectHideFlags: 0
