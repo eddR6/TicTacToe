@@ -12,26 +12,41 @@ public class AssetsInfo : EditorWindow
 
     private void OnGUI()
     {
-        List<GameObject> gameObjs = new List<GameObject>();
-        foreach (GameObject obj in Object.FindObjectsOfType(typeof(GameObject)))
+        List<Component> compList = new List<Component>();
+        foreach (GameObject obj in FindObjectsOfType(typeof(GameObject)))
         {
-            gameObjs.Add(obj);
+            Component[] comps = obj.GetComponents<Component>();
+            foreach(Component comp in comps)
+            {
+                compList.Add(comp);
+            }
         }
+    
         string[] str = GetAssets();
+        Debug.Log(str.Length + " " + compList.Count);
         foreach (string s in str)
         {
             if (s.Contains("Assets/"))
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.Label(s.Substring(s.LastIndexOf('/')+1,s.Length- s.LastIndexOf('/')-1));
-                foreach(GameObject obj in gameObjs)
-                {
-                    Component[] comps = obj.GetComponents<Component>();
-                    foreach(Component com in comps)
-                    {
-                       // com.get
-                    }
-                }
+                
+    
+                    //foreach (Component com in compList)
+                    //{
+                    //    int id = com.GetInstanceID();
+                    //    string guid;
+                    //    long lid;
+                    //    AssetDatabase.TryGetGUIDAndLocalFileIdentifier(id, out guid, out lid);
+                    //    string guidd = AssetDatabase.AssetPathToGUID(s);
+                    //    Debug.Log("||" + guid);
+                    //    Debug.Log("|>>>|" + guidd);
+                    //    if (guid == guidd)
+                    //    {
+                    //        Debug.Log(s + " --- " + com.name);
+                    //    }
+                    //}
+                
                 GUILayout.EndHorizontal();
             }
         }
@@ -44,16 +59,6 @@ public class AssetsInfo : EditorWindow
         return str;
       
     }
+
 }
-// Object[] objs= AssetDatabase.LoadAllAssetsAtPath(s);
-// if (objs == null || objs.Length == 0)
-// {
-//     Debug.Log("nothing at path " + s);
-//    continue;
-// }
-//foreach (Object obj in objs)
-// {
-//     if (obj == null)
-//         continue;
-//    Debug.Log("path " + s + " Type: " + obj.GetType().ToString());
-// }
+

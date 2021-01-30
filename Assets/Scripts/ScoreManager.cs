@@ -8,6 +8,11 @@ public static class ScoreManager
     private  static int score;
     public static string playerName;
 
+    public static int GetScore()
+    {
+        return score;
+    }
+
     public static void UpdateScore(int add)
     {
         if (add <= 0)

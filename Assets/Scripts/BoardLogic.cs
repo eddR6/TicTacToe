@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class BoardLogic : MonoBehaviour
 {
     [SerializeField]
+    private Text score;
+    [SerializeField]
     private GameObject[] blocks;
     private string[] str;
     private CurrentPlayer currentPlayer;
@@ -17,6 +19,11 @@ public class BoardLogic : MonoBehaviour
         str = new string[blocks.Length];
         UIManager.SetCurrentUI("PlayerName");
        
+    }
+
+    public void UpdateScore()
+    {
+        score.text = "High Score: " + ScoreManager.GetScore();
     }
 
     public void UpdateBoard(int id)
@@ -159,6 +166,7 @@ public class BoardLogic : MonoBehaviour
         {
             blocks[i].GetComponentInChildren<Text>().text = "";
         }
+        UpdateScore();
     }
 
 
