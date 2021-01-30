@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class BoardLogic : MonoBehaviour
         currentPlayer=CurrentPlayer.Player;
         str = new string[blocks.Length];
         UIManager.SetCurrentUI("PlayerName");
+       
     }
 
     public void UpdateBoard(int id)
@@ -158,4 +160,6 @@ public class BoardLogic : MonoBehaviour
             blocks[i].GetComponentInChildren<Text>().text = "";
         }
     }
+
+
 }

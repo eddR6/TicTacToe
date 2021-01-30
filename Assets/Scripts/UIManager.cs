@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject gameBoard;
 
-    void Start()
+    void Awake()
     {
         uicollection = new Dictionary<string, GameObject>();
         uicollection.Add("PlayerName", playerName);
