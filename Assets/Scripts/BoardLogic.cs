@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +11,8 @@ public class BoardLogic : MonoBehaviour
     private GameObject[] blocks;
     private string[] str;
     private CurrentPlayer currentPlayer;
+    [SerializeField]
+    private readonly int gridSize;
    
 
     private void Start()
@@ -47,84 +49,155 @@ public class BoardLogic : MonoBehaviour
 
     private void CPUTurn()
     {
-        while (true)
+        List<int> emptyPlaces = new List<int>();
+        for(int i = 0; i < gridSize * gridSize; i++)
         {
-            int index = Random.Range(0, 9);
-           // Debug.Log("rr " + index);
-            if (blocks[index].GetComponentInChildren<Text>().text == "")
+            if(blocks[i].GetComponentInChildren<Text>().text == "")
             {
-                blocks[index].GetComponentInChildren<Text>().text = "o";
-                if (!CheckForWinCondition())
-                {
-                    currentPlayer = CurrentPlayer.Player;
-                    
-                }
-                break;
+                emptyPlaces.Add(i);
             }
+        }
+        int index = Random.Range(0, emptyPlaces.Count);
+        blocks[emptyPlaces[index]].GetComponentInChildren<Text>().text = "o";
+        if (!CheckForWinCondition())
+        {
+            currentPlayer = CurrentPlayer.Player;
         }
     }
-
+ 
     private bool CheckForWinCondition()
     {
-        int i = 0;
-        foreach(GameObject block in blocks)
+        int k = 0;
+        int n = gridSize;
+        int emptyCount = 0;
+        char[,] board = new char[n, n];
+        for(int i = 0; i < n; i++)
         {
-            str[i] = block.GetComponentInChildren<Text>().text;
-            i++;
-        }
-        //check win condition
-        
-        if(str[0]!="" && str[1]==str[0] && str[2]==str[1])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        else if (str[3] != "" && str[4] == str[3] && str[5] == str[4])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        else if (str[6] != "" && str[7] == str[6] && str[8] == str[7])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        else if (str[0] != "" && str[3] == str[0] && str[6] == str[3])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        else if (str[1] != "" && str[4] == str[1] && str[7] == str[4])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        else if (str[2] != "" && str[5] == str[2] && str[8] == str[5])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        else if (str[0] != "" && str[4] == str[0] && str[8] == str[4])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        else if (str[2] != "" && str[4] == str[2] && str[6] == str[4])
-        {
-            DisplayWin(currentPlayer);
-            return true;
-        }
-        //TIE CONDITION
-        bool isFull = true;
-        foreach(string s in str)
-        {
-            if (s == "")
+            for(int j = 0; j < n; j++)
             {
-                isFull = false;
-                break;
+                if (blocks[k].GetComponentInChildren<Text>().text == "")
+                {
+                    board[i, j] = '-';
+                    emptyCount++;
+                }
+                else
+                {
+                    board[i, j] = blocks[k].GetComponentInChildren<Text>().text[0];
+                }
+                k++;
             }
         }
-        if (isFull)
+        //check win condition
+        //row
+        for (int i = 0; i < n; i++)
+        {
+            bool inARow = true;
+            char value = board[i, 0];
+
+            if (value == '-')
+            {
+                inARow = false;
+            }
+            else
+            {
+                for (int j = 1; j < n; j++)
+                {
+                    if (board[i, j] != value)
+                    {
+                        inARow = false;
+                        break;
+                    }
+                }
+            }
+            if (inARow)
+            {
+                DisplayWin(currentPlayer);
+                return true;
+            }
+        }
+
+        //col
+        for (int j = 0; j < n; j++)
+        {
+            bool inACol = true;
+            char value = board[0, j];
+
+            if (value == '-')
+            {
+                inACol = false;
+
+            }
+            else
+            {
+                for (int i = 1; i < n; i++)
+                {
+                    if (board[i, j] != value)
+                    {
+                        inACol = false;
+                        break;
+                    }
+                }
+            }
+            if (inACol)
+            {
+                DisplayWin(currentPlayer);
+                return true;
+            }
+        }
+
+        //d1
+        bool inADiag1 = true;
+        char value1 = board[0, 0];
+
+        if (value1 == '-')
+        {
+            inADiag1 = false;
+        }
+        else
+        {
+            for (int i = 1; i < n; i++)
+            {
+                if (board[i, i] != value1)
+                {
+                    inADiag1 = false;
+                    break;
+                }
+            }
+        }
+
+        if (inADiag1)
+        {
+            DisplayWin(currentPlayer);
+            return true;
+        }
+
+        //d2
+        bool inADiag2 = true;
+        char value2 = board[0, n - 1];
+
+        if (value2 == '-')
+        {
+            inADiag2 = false;
+        }
+        else
+        {
+            for (int i = 1; i < n; i++)
+            {
+                if (board[i, n - 1 - i] != value2)
+                {
+                    inADiag2 = false;
+                    break;
+                }
+            }
+        }
+        if (inADiag2)
+        {
+            DisplayWin(currentPlayer);
+            return true;
+        }
+
+        //tie
+        if (emptyCount == 0)
         {
             DisplayTie();
             return true;
@@ -168,6 +241,4 @@ public class BoardLogic : MonoBehaviour
         }
         UpdateScore();
     }
-
-
 }

@@ -1,1 +1,1 @@
-{"highScores":[30,30,20,20,20],"scorers":["aa","Edd","Aditya","Aditya","aa"]}
+{"highScores":[10,0,0,0,0],"scorers":["edd","Player","Player","Player","Player"]}

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -15,7 +12,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button submitButton;
     [SerializeField]
-    private Text leaderBoard;
+    private Text nameBoard;
+    [SerializeField]
+    private Text scoreBoard;
     [SerializeField]
     private InputField playerName;
 
@@ -41,10 +40,10 @@ public class MainMenu : MonoBehaviour
 
     private void UpdateLeaderBoard()
     {
-        leaderBoard.text = "-Leader Board-\n";
         for(int i = 0; i < SaveSystem.HighScores.Length; i++)
         {
-            leaderBoard.text += SaveSystem.Scorers[i] + " : " + SaveSystem.HighScores[i] + "\n";
+            nameBoard.text += SaveSystem.Scorers[i] + "\n ";
+            scoreBoard.text += SaveSystem.HighScores[i] + "\n"; ;
         }
     }
 
