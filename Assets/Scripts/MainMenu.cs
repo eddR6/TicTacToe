@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -6,7 +7,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button playButton;
     [SerializeField]
-    private Button changeBoard;
+    private Dropdown themeDropdown;
     [SerializeField]
     private Button quitButton;
     [SerializeField]
@@ -26,6 +27,21 @@ public class MainMenu : MonoBehaviour
         SaveSystem.CheckAndCreateSaveDir();
         SaveSystem.LoadGame();
         UpdateLeaderBoard();
+        SetThemeDropdown();
+        themeDropdown.onValueChanged.AddListener(delegate { Themes.Instance.SetTheme(themeDropdown.options[themeDropdown.value].text); });
+    }
+
+    private void SetThemeDropdown()
+    {
+        List<string> themeNames = new List<string>();
+        themeNames.Add("Select Theme");
+        foreach(Theme th in Themes.Instance.ThemesList)
+        {
+            themeNames.Add(th.name);
+        }
+        //
+        themeDropdown.ClearOptions();
+        themeDropdown.AddOptions(themeNames);
     }
 
     private void QuitGame()
