@@ -4748,8 +4748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4376e4d07df0549be7664a16ef5b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bundleUrl: https://drive.google.com/uc?export=download&id=1XHoqJmkWWHA2ocLmRN1ZUwnTF61pof0f
-  assetName: Image
+  bundleUrl: https://drive.google.com/uc?export=download&id=1S2Wktak30QX4qIoZwexCdB4_Pj2PbDFY
+  assetName: ImageCircle
   parentObj: {fileID: 331965274}
 --- !u!1 &1493165895
 GameObject:
